@@ -1,0 +1,15 @@
+C:\repositórios\rpg_turno\rpg-turno\bin\Debug\net10.0\rpg-turno.exe
+C:\repositórios\rpg_turno\rpg-turno\bin\Debug\net10.0\rpg-turno.deps.json
+C:\repositórios\rpg_turno\rpg-turno\bin\Debug\net10.0\rpg-turno.runtimeconfig.json
+C:\repositórios\rpg_turno\rpg-turno\bin\Debug\net10.0\rpg-turno.dll
+C:\repositórios\rpg_turno\rpg-turno\bin\Debug\net10.0\rpg-turno.pdb
+C:\repositórios\rpg_turno\rpg-turno\obj\Debug\net10.0\rpg-turno.GeneratedMSBuildEditorConfig.editorconfig
+C:\repositórios\rpg_turno\rpg-turno\obj\Debug\net10.0\rpg-turno.AssemblyInfoInputs.cache
+C:\repositórios\rpg_turno\rpg-turno\obj\Debug\net10.0\rpg-turno.AssemblyInfo.cs
+C:\repositórios\rpg_turno\rpg-turno\obj\Debug\net10.0\rpg-turno.csproj.CoreCompileInputs.cache
+C:\repositórios\rpg_turno\rpg-turno\obj\Debug\net10.0\rpg-turno.sourcelink.json
+C:\repositórios\rpg_turno\rpg-turno\obj\Debug\net10.0\rpg-turno.dll
+C:\repositórios\rpg_turno\rpg-turno\obj\Debug\net10.0\refint\rpg-turno.dll
+C:\repositórios\rpg_turno\rpg-turno\obj\Debug\net10.0\rpg-turno.pdb
+C:\repositórios\rpg_turno\rpg-turno\obj\Debug\net10.0\rpg-turno.genruntimeconfig.cache
+C:\repositórios\rpg_turno\rpg-turno\obj\Debug\net10.0\ref\rpg-turno.dll

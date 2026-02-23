@@ -5,7 +5,6 @@ public class Guerreiro : FichaPersonagem
     public int Adrenalina { get; private set; } = 0;
 
     private const int _AdrenalinaMaxima = 20;
-
     private const int _GanhoAdrenalina = 5;
     private const int _DanoBase = 10;
 

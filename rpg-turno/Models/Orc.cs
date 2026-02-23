@@ -6,7 +6,7 @@ public class Orc : FichaPersonagem
 
     public override void Atacar(FichaPersonagem alvo)
     {
-        int danoFinal = (Vida < 50) ? 10 : 6;
+        int danoFinal = (Vida < 50) ? 15 : 10;
         alvo.ReceberDano(danoFinal);
     }
 }

@@ -2,6 +2,21 @@ namespace rpg_turno.Models;
 
 public static class Narrador
 {
+    public static void IniciarJogo()
+    {
+        Introducao();
+
+        FichaPersonagem jogador = CriandoPersonagem();
+
+        CapituloUm(jogador);
+
+        FichaPersonagem miniOrc = new Orc("Ugluk");
+
+        Luta(jogador, miniOrc);
+
+
+
+    }
     public static void Introducao()
     {
         Console.Clear();
@@ -40,24 +55,27 @@ public static class Narrador
                                         ...");
         Thread.Sleep(400);
         Console.Clear();
+
     }
 
     public static FichaPersonagem CriandoPersonagem()
     {
-        NarrandoDevagar("Você acorda em um descampado em um local desconhecido para você...");
+        NarrandoDevagar("Você acorda em um descampado em um local desconhecido...");
         Thread.Sleep(500);
-        NarrandoDevagar("Você não lembra de caralho nenhum, O que PORRA aconteceu? - Você pensou...");
+        NarrandoDevagar("Você não lembra de caralho nenhum, O que PORRA aconteceu? - Pensastes...");
         Thread.Sleep(500);
-        NarrandoDevagar("Um barulho em um arbusto próximo... Você se assusta, mas não consigue se mecher direito...");
+        NarrandoDevagar("Um barulho em um arbusto próximo... Você se assusta, mas não consegue se mexer direito...");
         Thread.Sleep(500);
-        Console.ForegroundColor = ConsoleColor.Cyan;
-        NarrandoDevagar(@"Uma silhueta de uma pessoa brota no arbusto, uma voz suave te pergunta: Está bem viajante?
+
+        NarrandoDevagarNpcLea(@"
+        Uma silhueta de uma pessoa brota no arbusto, uma voz suave te pergunta:
+            Está bem viajante?
         Olá, meu nome é Léa, Estava passando, e ouvi você murmurando, Qual o seu nome? ");
-        Console.ResetColor();
+
 
         string nome = ValidandoNomePersonagem();
 
-        NarrandoDevagar(@$"
+        NarrandoDevagarNpcLea(@$"
         Léa: ""{nome}"" que nome peculiar, e o que você carrega ai nas costas?
         1 - Uma Espada Pesada (GUERREIRO)
         2 - Um Cajado de Madeira (MAGO);
@@ -76,9 +94,6 @@ public static class Narrador
             return new Mago(nome);
             nomeClasse = "Mago";
         }
-
-        NarrandoDevagar(@$"Lea: Nossa, você é um {nomeClasse}...");
-
     }
 
     public static string ValidandoNomePersonagem()
@@ -92,27 +107,30 @@ public static class Narrador
 
             if (string.IsNullOrWhiteSpace(nome))
             {
-                NarrandoDevagar("Já que vc n quer falar seu nome, vou lhe chamar de Filho da puta sem nome :D");
+                NarrandoDevagarNpcLea("Léa: Já que vc n quer falar seu nome, vou lhe chamar de Filho da puta sem nome :D");
                 nome = "Filho da puta sem nome";
+                testeNome = false;
             }
             else
-                NarrandoDevagar($"Seu nome é esse? {nome} tem certeza? s/n");
-
-            string opcaoTemCerteza = Console.ReadLine().ToLower();
-
-            switch (opcaoTemCerteza)
             {
-                case "s":
-                    testeNome = false;
-                    break;
+                NarrandoDevagarNpcLea($"Léa: Seu nome é esse? {nome} tem certeza? s/n");
+                string opcaoTemCerteza = Console.ReadLine().ToLower();
 
-                case "n":
-                    break;
-                default:
-                    NarrandoDevagar("Opção inválida! Digite s/n");
-                    break;
+                switch (opcaoTemCerteza)
+                {
+                    case "s":
+                        testeNome = false;
+                        break;
+
+                    case "n":
+                        break;
+                    default:
+                        NarrandoDevagar("Opção inválida! Digite s/n");
+                        break;
+                }
             }
         }
+
         return nome;
     }
 
@@ -129,7 +147,7 @@ public static class Narrador
 
             string nomeClasse = (classe == 1) ? "Guerreiro" : "Mago";
 
-            NarrandoDevagar($"Você escolheu {nomeClasse}. Tem certeza? s/n");
+            NarrandoDevagarNpcLea($"Léa: Você é um {nomeClasse}... Tem certeza? s/n");
 
             string confirma = Console.ReadLine().ToLower();
             switch (confirma)
@@ -138,10 +156,10 @@ public static class Narrador
                     testeClasse = false;
                     break;
                 case "n":
-                    NarrandoDevagar("Entendido, Escolha novamente aventureiro!");
+                    NarrandoDevagarNpcLea("Léa: Entendido, Pense bem aventureiro, escolha novamente");
                     break;
                 default:
-                    NarrandoDevagar("Comando não reconhecido, Escolha novamente viajante!");
+                    NarrandoDevagarNpcLea("Léa: Não entendi, Escolha novamente viajante!");
                     break;
             }
         }
@@ -149,8 +167,46 @@ public static class Narrador
         return classe;
     }
 
-    public static void NarrandoDevagar(string texto)
+    public static void CapituloUm(FichaPersonagem heroi)
     {
+        string classeNome = heroi is Guerreiro ? "Guerreiro" : "Mago";
+
+
+        NarrandoDevagarNpcLea(@$"
+        Lea: Nossa, você é um {classeNome}...
+        não vejo muitos de vocês nessas áreas
+        O que Você faz por aqui?");
+
+
+        Console.ForegroundColor = ConsoleColor.Red;
+        NarrandoDevagarJogador(@$"
+            Só sei que nada sei...
+        ");
+        Console.ResetColor();
+
+        NarrandoDevagarNpcLea(@$"
+        Lea: Você está péssimo, meu vilarejo é perto daqui.
+        Vamos lá pra restaurar suas energias e você seguir viagem.
+        ");
+        Console.ResetColor();
+        Console.Clear();
+
+        NarrandoDevagar($"5 minutos depois...");
+        Console.Clear();
+
+        NarrandoDevagarNpcLea(@$"
+        Léa: Que barulho é esse?
+        Droga, é um orc, e vamos ter que enfrentar...
+        não dá pra fugir...
+        ");
+        Thread.Sleep(500);
+        NarrandoDevagar("INICIANDO A LUTA...");
+        Thread.Sleep(500);
+        Console.Clear();
+    }
+    public static void NarrandoDevagarNpcLea(string texto)
+    {
+        Console.ForegroundColor = ConsoleColor.Cyan;
         foreach (char letra in texto)
         {
             Console.Write(letra);
@@ -158,4 +214,33 @@ public static class Narrador
         }
         Console.WriteLine("\n");
     }
+
+    public static void NarrandoDevagar(string texto)
+    {
+        Console.ForegroundColor = ConsoleColor.Black;
+        foreach (char letra in texto)
+        {
+            Console.Write(letra);
+            Thread.Sleep(30);
+        }
+        Console.WriteLine("\n");
+    }
+
+    public static void NarrandoDevagarJogador(string texto)
+    {
+        Console.ForegroundColor = ConsoleColor.Red;
+        foreach (char letra in texto)
+        {
+            Console.Write(letra);
+            Thread.Sleep(30);
+        }
+        Console.WriteLine("\n");
+    }
+
+    public static void Luta(FichaPersonagem p1, FichaPersonagem npc)
+    {
+        var combate = new Combate();
+        combate.IniciarDuelo(p1, npc);
+    }
 }
+

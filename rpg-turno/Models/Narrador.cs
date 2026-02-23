@@ -15,16 +15,9 @@ public static class Narrador
         Luta(jogador, miniOrc);
 
         if (!jogador.EstaVivo)
-        {
-            Console.ForegroundColor = ConsoleColor.DarkRed;
             NarrandoLutaPerdida("Você caiu em combate... Léa chora sobre seu corpo frio. GAME OVER.");
-        }
         else
-        {
-            Console.ForegroundColor = ConsoleColor.Yellow;
             NarrandoLutaGanha("O Inimigo caiu! Você VENCEU!");
-        }
-
 
     }
     public static void Introducao()
@@ -243,7 +236,7 @@ public static class Narrador
 
     public static void NarrandoLutaGanha(string texto)
     {
-        Console.ForegroundColor = ConsoleColor.DarkRed;
+        Console.ForegroundColor = ConsoleColor.Yellow;
         foreach (char letra in texto)
         {
             Console.Write(letra);

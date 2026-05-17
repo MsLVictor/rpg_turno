@@ -13,6 +13,9 @@ public class Mago : FichaPersonagem
     {
         alvo.ReceberDano(_danoBase);
         Mana += 2;
+
+        if (Mana > 20)
+            Mana = 20;
     }
 
     public void BolaDeFogo(FichaPersonagem alvo)

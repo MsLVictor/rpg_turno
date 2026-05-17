@@ -36,6 +36,9 @@ public class Guerreiro : FichaPersonagem
         alvo.ReceberDano(_DanoBase);
 
         Adrenalina += _GanhoAdrenalina;
+
+        if (Adrenalina > 20)
+            Adrenalina = 20;
     }
 
     private void HabilidadeFuria(FichaPersonagem alvo)

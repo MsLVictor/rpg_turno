@@ -7,6 +7,7 @@ public abstract class FichaPersonagem
     public string Nome { get; private set; }
     public int Vida { get; protected set; }
     public int Nivel { get; private set; } = 1;
+    public virtual int DanoBase => 10;
 
     public FichaPersonagem(string nome, int vida)
     {
@@ -29,4 +30,6 @@ public abstract class FichaPersonagem
     public bool EstaVivo => Vida > 0;
     
     public void DefinirAcoes(List<IAcaoCombate> acoes) => Acoes = acoes;
+
+    public virtual string StatusRecurso => "";
 }

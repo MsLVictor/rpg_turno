@@ -9,4 +9,6 @@ public class Orc : FichaPersonagem
         int danoFinal = (Vida < 50) ? 15 : 10;
         alvo.ReceberDano(danoFinal);
     }
+
+    public override string StatusRecurso => "Só tem raiva incontrolável!";
 }

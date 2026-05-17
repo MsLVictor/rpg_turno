@@ -74,7 +74,7 @@ public class Combate
     {
         Console.WriteLine(@$"
         ================== STATUS ==================
-        Nv{p1.Nivel} | {p1.Nome}: {p1.Vida} HP | {(p1 is Guerreiro g ? $"{g.Adrenalina}/20" : $"{(p1 is Mago m ? $"{m.Mana}/20" : "")}")}
+        Nv{p1.Nivel} | {p1.Nome}: {p1.Vida} HP | {(p1 is Guerreiro g ? $"Adrenalina {g.Adrenalina}/20" : $"{(p1 is Mago m ? $"Mana: {m.Mana}/20" : "")}")}
         Nv{p2.Nivel} | {p2.Nome}: {p2.Vida} HP | 
         ============================================
         ");

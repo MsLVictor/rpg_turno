@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("rpg-turno")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fde9258b9d31915424bd8c79bb35c88d9cfc859b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c7a42bf97c2cc1c0ecf81dc25d148c537fb12947")]
 [assembly: System.Reflection.AssemblyProductAttribute("rpg-turno")]
 [assembly: System.Reflection.AssemblyTitleAttribute("rpg-turno")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

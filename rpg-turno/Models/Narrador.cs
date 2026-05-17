@@ -98,6 +98,7 @@ public static class Narrador
         bool testeNome = true;
 
         string nome = "";
+
         while (testeNome)
         {
             nome = Console.ReadLine();
@@ -111,18 +112,21 @@ public static class Narrador
             else
             {
                 NarrandoDevagarNpcLea($"Léa: Seu nome é esse? {nome} tem certeza? s/n");
+
                 string opcaoTemCerteza = Console.ReadLine().ToLower();
+
+                while (string.IsNullOrWhiteSpace(opcaoTemCerteza))
+                {
+                    NarrandoDevagar("Opção inválida! Digite s/n");
+                    opcaoTemCerteza = Console.ReadLine().ToLower();
+                }
 
                 switch (opcaoTemCerteza)
                 {
                     case "s":
                         testeNome = false;
                         break;
-
                     case "n":
-                        break;
-                    default:
-                        NarrandoDevagar("Opção inválida! Digite s/n");
                         break;
                 }
             }
@@ -231,6 +235,7 @@ public static class Narrador
             Console.Write(letra);
             Thread.Sleep(30);
         }
+
         Console.WriteLine("\n");
     }
 

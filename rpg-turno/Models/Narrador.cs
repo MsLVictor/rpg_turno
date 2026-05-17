@@ -115,7 +115,7 @@ public static class Narrador
 
                 string opcaoTemCerteza = Console.ReadLine().ToLower();
 
-                while (string.IsNullOrWhiteSpace(opcaoTemCerteza))
+                while (opcaoTemCerteza != "s" && opcaoTemCerteza != "n")
                 {
                     NarrandoDevagar("Opção inválida! Digite s/n");
                     opcaoTemCerteza = Console.ReadLine().ToLower();

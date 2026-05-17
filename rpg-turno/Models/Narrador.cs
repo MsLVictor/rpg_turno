@@ -1,7 +1,11 @@
+using rpg_turno.Interfaces;
+using rpg_turno.Models.Factories;
+
 namespace rpg_turno.Models;
 
 public static class Narrador
 {
+
     public static void IniciarJogo()
     {
         Introducao();
@@ -10,12 +14,12 @@ public static class Narrador
 
         CapituloUm(jogador);
 
-        FichaPersonagem miniOrc = new Orc("Ugluk");
+        FichaPersonagem miniOrc = new OrcFactory().CriarPersonagem("Ugluk");
 
         Luta(jogador, miniOrc);
 
         if (!jogador.EstaVivo)
-            NarrandoLutaPerdida("Você caiu em combate... Léa chora sobre seu corpo frio. GAME OVER.");
+            NarrandoLutaPerdida("Você caiu em combate... Léa chora sobre seu corpo frio e desfigurado. GAME OVER.");
         else
             NarrandoLutaGanha("O Inimigo caiu! Você VENCEU!");
 
@@ -23,10 +27,11 @@ public static class Narrador
     public static void Introducao()
     {
         Console.Clear();
+
         System.Console.WriteLine(@"
         
 
-        ===== RPG DE TURNO VAGABUNDO =====
+        ===== RPGZIN DE TURNO =====
         
 
         ");
@@ -65,7 +70,7 @@ public static class Narrador
     {
         NarrandoDevagar("Você acorda em um descampado em um local desconhecido...");
         Thread.Sleep(500);
-        NarrandoDevagar("Você não lembra de caralho nenhum, O que PORRA aconteceu? - Pensastes...");
+        NarrandoDevagar("Você não lembra de car**** nenhum, O que POR** aconteceu? - Pensastes...");
         Thread.Sleep(500);
         NarrandoDevagar("Um barulho em um arbusto próximo... Você se assusta, mas não consegue se mexer direito...");
         Thread.Sleep(500);
@@ -84,13 +89,16 @@ public static class Narrador
         2 - Um Cajado de Madeira (MAGO);
         ");
 
-        int classe = ValidandoClassePersonagem();
 
+        var factories = new List<IPersonagemFactory>
+        {
+            new GuerreiroFactory(),
+            new MagoFactory()
+        };
 
-        if (classe == 1)
-            return new Guerreiro(nome);
-        else
-            return new Mago(nome);
+        int classe = ValidandoClassePersonagem(factories);
+
+        return factories[classe - 1].CriarPersonagem(nome);
     }
 
     public static string ValidandoNomePersonagem()
@@ -135,7 +143,7 @@ public static class Narrador
         return nome;
     }
 
-    public static int ValidandoClassePersonagem()
+    public static int ValidandoClassePersonagem(List<IPersonagemFactory> factories)
     {
         int classe = 0;
 
@@ -143,10 +151,10 @@ public static class Narrador
 
         while (testeClasse)
         {
-            while (!int.TryParse(Console.ReadLine(), out classe) || classe < 1 || classe > 2)
-                NarrandoDevagar("Digite uma número válido. 1 ou 2");
+            while (!int.TryParse(Console.ReadLine(), out classe) || classe < 1 || classe > factories.Count)
+                NarrandoDevagarNpcLea("Léa: Não entendi, Escolha novamente viajante!");
 
-            string nomeClasse = (classe == 1) ? "Guerreiro" : "Mago";
+            string nomeClasse = factories[classe - 1].NomeClasse;
 
             NarrandoDevagarNpcLea($"Léa: Você é um {nomeClasse}... Tem certeza? s/n");
 
@@ -158,9 +166,6 @@ public static class Narrador
                     break;
                 case "n":
                     NarrandoDevagarNpcLea("Léa: Entendido, Pense bem aventureiro, escolha novamente");
-                    break;
-                default:
-                    NarrandoDevagarNpcLea("Léa: Não entendi, Escolha novamente viajante!");
                     break;
             }
         }
@@ -174,14 +179,14 @@ public static class Narrador
 
 
         NarrandoDevagarNpcLea(@$"
-        Lea: Nossa, você é um {classeNome}...
+        Lea: Nossa...
         não vejo muitos de vocês nessas áreas
         O que Você faz por aqui?");
 
 
         Console.ForegroundColor = ConsoleColor.Red;
         NarrandoDevagarJogador(@$"
-            Só sei que nada sei...
+            Fui atacado por alguma criatura estranha, n lembro direito, só sinto que estou ferido.
         ");
         Console.ResetColor();
 
@@ -190,20 +195,19 @@ public static class Narrador
         Vamos lá pra restaurar suas energias e você seguir viagem.
         ");
         Console.ResetColor();
-        Console.Clear();
 
-        NarrandoDevagar($"5 minutos depois...");
-        Console.Clear();
+        NarrandoDevagar($"ao longo de aproximadamento 10 minutos de caminhada depois...");
+
 
         NarrandoDevagarNpcLea(@$"
         Léa: Que barulho é esse?
         Droga, é um orc, e vamos ter que enfrentar...
-        não dá pra fugir...
         ");
+
         Thread.Sleep(500);
         NarrandoDevagar("INICIANDO A LUTA...");
         Thread.Sleep(500);
-        Console.Clear();
+
     }
     public static void NarrandoDevagarNpcLea(string texto)
     {

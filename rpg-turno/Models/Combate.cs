@@ -13,49 +13,25 @@ public class Combate
 
             int opcaoMenu;
 
-            Console.WriteLine(@$"
-            --- Turno de {p1.Nome} - Nv {p1.Nivel} ---
-            1 - Atacar
-            {(p1 is Guerreiro ? "2 - Preparar Fúria" : "2 - Bola de fogo")}
+            Console.WriteLine($"--- Turno de {p1.Nome} - Nv {p1.Nivel} ---");
+            
+            for(int i = 0; i < p1.Acoes.Count; i++)
+                Console.WriteLine($"{i + 1} - {p1.Acoes[i].Descricao}");
+            
+            Console.WriteLine("0 - Pular turno.");
 
-            0 - Pular Turno
-            ");
-
-            while (!int.TryParse(Console.ReadLine(), out opcaoMenu) || opcaoMenu < 0 || opcaoMenu > 2)
+            while (!int.TryParse(Console.ReadLine(), out opcaoMenu) || opcaoMenu < 0 || opcaoMenu > p1.Acoes.Count)
                 Console.WriteLine("Entrada inválida.");
 
-            switch (opcaoMenu)
+            if(opcaoMenu == 0)
             {
-                case 1:
-                    p1.Atacar(p2);
-                    Console.WriteLine($"{p1.Nome} atacou {p2.Nome}");
-                    Thread.Sleep(1000);
-                    break;
-
-                case 2:
-                    if (p1 is Guerreiro g)
-                    {
-                        if (g.Adrenalina >= 20)
-                            g.PrepararFuria();
-                        else
-                            System.Console.WriteLine("Fúria insuficiente.");
-
-                        g.Atacar(p2);
-                        Console.WriteLine($"{p1.Nome} atacou {p2.Nome}");
-                        Thread.Sleep(1000);
-                    }
-
-                    if (p1 is Mago m)
-                        m.BolaDeFogo(p2);
-
-                    break;
-
-                case 0:
-                    System.Console.WriteLine("Pulando turno");
-                    Thread.Sleep(1000);
-                    break;
+                System.Console.WriteLine("Pulando turno");
+                Thread.Sleep(1000);
             }
-
+            else
+                p1.Acoes[opcaoMenu - 1].Executar(p1, p2);
+            
+            
             if (p2.EstaVivo)
             {
                 p2.Atacar(p1);

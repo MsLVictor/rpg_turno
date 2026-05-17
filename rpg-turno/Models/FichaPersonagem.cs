@@ -1,3 +1,5 @@
+using rpg_turno.Interfaces;
+
 namespace rpg_turno.Models;
 
 public abstract class FichaPersonagem
@@ -12,6 +14,8 @@ public abstract class FichaPersonagem
         Vida = vida;
     }
 
+    public List<IAcaoCombate> Acoes { get; private set; } = new();
+
     public abstract void Atacar(FichaPersonagem alvo);
 
     public void ReceberDano(int dano)
@@ -22,6 +26,7 @@ public abstract class FichaPersonagem
         if (Vida < 0)
             Vida = 0;
     }
-
     public bool EstaVivo => Vida > 0;
+    
+    public void DefinirAcoes(List<IAcaoCombate> acoes) => Acoes = acoes;
 }

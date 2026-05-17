@@ -6,6 +6,8 @@
     <RootNamespace>rpg_turno</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
+    <PublishSingleFile>true</PublishSingleFile>
+    <PublishDir>publish</PublishDir>
   </PropertyGroup>
 
 </Project>

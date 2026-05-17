@@ -6,7 +6,7 @@ public class Guerreiro : FichaPersonagem
 
     private const int _AdrenalinaMaxima = 20;
     private const int _GanhoAdrenalina = 5;
-    private const int _DanoBase = 10;
+    public override int DanoBase => 10;
 
     private bool _FuriaPretendida = false;
 
@@ -33,7 +33,7 @@ public class Guerreiro : FichaPersonagem
 
     public void AtaqueNormal(FichaPersonagem alvo)
     {
-        alvo.ReceberDano(_DanoBase);
+        alvo.ReceberDano(DanoBase);
 
         Adrenalina += _GanhoAdrenalina;
 
@@ -43,7 +43,7 @@ public class Guerreiro : FichaPersonagem
 
     private void HabilidadeFuria(FichaPersonagem alvo)
     {
-        int danoComBonus = (int)(_DanoBase * 1.20);
+        int danoComBonus = (int)(DanoBase * 1.20);
 
         alvo.ReceberDano(danoComBonus);
         alvo.ReceberDano(danoComBonus);
@@ -51,4 +51,6 @@ public class Guerreiro : FichaPersonagem
 
         Adrenalina = 0;
     }
+
+    public override string StatusRecurso => $"Adrenalina: {Adrenalina}/20";
 }

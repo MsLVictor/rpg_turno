@@ -222,7 +222,7 @@ public static class Narrador
 
     public static void NarrandoDevagar(string texto)
     {
-        Console.ForegroundColor = ConsoleColor.Black;
+        Console.ForegroundColor = ConsoleColor.White;
         foreach (char letra in texto)
         {
             Console.Write(letra);
@@ -233,7 +233,7 @@ public static class Narrador
 
     public static void NarrandoDevagarJogador(string texto)
     {
-        Console.ForegroundColor = ConsoleColor.Red;
+        Console.ForegroundColor = ConsoleColor.DarkGreen;
         foreach (char letra in texto)
         {
             Console.Write(letra);

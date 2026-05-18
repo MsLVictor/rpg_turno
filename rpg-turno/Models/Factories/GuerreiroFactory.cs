@@ -9,7 +9,8 @@ public class GuerreiroFactory : IPersonagemFactory
 
     public List<IAcaoCombate> CriarAcoes() => new() 
     {
-        new AtaqueBasico(), new PreparacaoDeFuria(),
+        new AtaqueBasico(),
+        new PreparacaoDeFuria(),
     };
 
     public FichaPersonagem CriarPersonagem(string nome)

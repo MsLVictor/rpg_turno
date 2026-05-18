@@ -113,20 +113,20 @@ public static class Narrador
 
             if (string.IsNullOrWhiteSpace(nome))
             {
-                NarrandoDevagarNpcLea("Léa: Já que vc n quer falar seu nome, vou lhe chamar de Filho da puta sem nome :D");
-                nome = "Filho da puta sem nome";
+                NarrandoDevagarNpcLea("Léa: Já que vc n quer falar seu nome, vou lhe chamar de Filho da pu** sem nome :D");
+                nome = "Filho da pu** sem nome";
                 testeNome = false;
             }
             else
             {
                 NarrandoDevagarNpcLea($"Léa: Seu nome é esse? {nome} tem certeza? s/n");
 
-                string opcaoTemCerteza = Console.ReadLine().ToLower();
+                string opcaoTemCerteza = (Console.ReadLine() ?? "").ToLower();
 
                 while (opcaoTemCerteza != "s" && opcaoTemCerteza != "n")
                 {
                     NarrandoDevagar("Opção inválida! Digite s/n");
-                    opcaoTemCerteza = Console.ReadLine().ToLower();
+                    opcaoTemCerteza = (Console.ReadLine() ?? "").ToLower();
                 }
 
                 switch (opcaoTemCerteza)
@@ -158,7 +158,14 @@ public static class Narrador
 
             NarrandoDevagarNpcLea($"Léa: Você é um {nomeClasse}... Tem certeza? s/n");
 
-            string confirma = Console.ReadLine().ToLower();
+            string confirma = (Console.ReadLine() ?? "").ToLower();
+
+            while (confirma != "s" && confirma != "n")
+            {
+                NarrandoDevagar("Opção inválida! Digite s/n");
+                confirma = (Console.ReadLine() ?? "").ToLower();
+            }
+
             switch (confirma)
             {
                 case "s":
@@ -175,9 +182,6 @@ public static class Narrador
 
     public static void CapituloUm(FichaPersonagem heroi)
     {
-        string classeNome = heroi is Guerreiro ? "Guerreiro" : "Mago";
-
-
         NarrandoDevagarNpcLea(@$"
         Lea: Nossa...
         não vejo muitos de vocês nessas áreas
@@ -188,16 +192,13 @@ public static class Narrador
         NarrandoDevagarJogador(@$"
             Fui atacado por alguma criatura estranha, n lembro direito, só sinto que estou ferido.
         ");
-        Console.ResetColor();
 
         NarrandoDevagarNpcLea(@$"
         Lea: Você está péssimo, meu vilarejo é perto daqui.
         Vamos lá pra restaurar suas energias e você seguir viagem.
         ");
-        Console.ResetColor();
-
-        NarrandoDevagar($"ao longo de aproximadamento 10 minutos de caminhada depois...");
-
+        
+        NarrandoDevagar($"ao longo de aproximadamente 10 minutos de caminhada...");
 
         NarrandoDevagarNpcLea(@$"
         Léa: Que barulho é esse?
@@ -207,7 +208,6 @@ public static class Narrador
         Thread.Sleep(500);
         NarrandoDevagar("INICIANDO A LUTA...");
         Thread.Sleep(500);
-
     }
     public static void NarrandoDevagarNpcLea(string texto)
     {

@@ -23,6 +23,7 @@ public static class Narrador
         else
             NarrandoLutaGanha("O Inimigo caiu! Você VENCEU!");
 
+        System.Console.WriteLine("Obrigado por jogar o nosso beta test!");
     }
     public static void Introducao()
     {
@@ -197,7 +198,7 @@ public static class Narrador
         Lea: Você está péssimo, meu vilarejo é perto daqui.
         Vamos lá pra restaurar suas energias e você seguir viagem.
         ");
-        
+
         NarrandoDevagar($"ao longo de aproximadamente 10 minutos de caminhada...");
 
         NarrandoDevagarNpcLea(@$"

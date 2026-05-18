@@ -17,7 +17,9 @@ public class AtaqueBasico : IAcaoCombate
         {
             System.Console.WriteLine("ATAQUE CRÍTICO! Impossível defender!!!");
 
-            alvo.ReceberDano(executor.DanoBase * 2);
+            // alvo.ReceberDano(executor.DanoBase * 2);
+            executor.Atacar(alvo);
+            alvo.ReceberDano(executor.DanoBase);
 
             Console.WriteLine($"{executor.DanoBase * 2} de dano!");
         }

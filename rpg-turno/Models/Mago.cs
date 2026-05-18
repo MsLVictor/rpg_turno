@@ -5,7 +5,7 @@ namespace rpg_turno.Models;
 public class Mago : FichaPersonagem
 {
     public int Mana = 20;
-    public override int DanoBase => 8;
+    public override int DanoBase => 10;
 
     public Mago(string nome) : base(nome, 80) { }
 
@@ -20,7 +20,7 @@ public class Mago : FichaPersonagem
 
     public void BolaDeFogo(FichaPersonagem alvo)
     {
-        int danoBolaDeFogo = 10 + (DanoBase * 2);
+        int danoBolaDeFogo = 10 + (int)(DanoBase * 1.8);
 
         alvo.ReceberDano(danoBolaDeFogo);
 
